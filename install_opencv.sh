@@ -1,5 +1,14 @@
 #!/bin/bash
 
+while true; do
+    read -p "This installs OpenCV v3.2.0. Do you want to continue? " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 # Update system and install build tools
 sudo apt-get update
 sudo apt-get upgrade
