@@ -35,6 +35,10 @@ git config --global user.name "Archie Lee"
 sudo sed -i.bak 's/gedit.desktop/sublime-text.desktop/g' /usr/share/applications/defaults.list
 sudo sed -i.bak 's/gedit.desktop/sublime-text.desktop/g' /etc/gnome/defaults.list
 
+# Install pip
+wget -O ~/get-pip.py https://bootstrap.pypa.io/get-pip.py
+sudo python3 ~/get-pip.py
+
 # Add user to dialout
 sudo adduser $USER dialout
 echo "Added yourself to dialout, make sure to logout to take effect."
