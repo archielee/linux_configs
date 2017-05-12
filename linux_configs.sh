@@ -22,7 +22,7 @@ sudo apt-get update
 
 echo "[Installing the packages]"
 sudo apt-get install -y vim arduino terminator openssh-server git vlc \
-indicator-multiload indicator-cpufreq screen sublime-text-installer
+	indicator-multiload indicator-cpufreq screen sublime-text-installer
 
 sudo apt-get -y purge thunderbird* pidgin* gwibber* rhythmbox* ubuntuone* empathy* totem*
 
