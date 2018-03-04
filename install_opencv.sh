@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while true; do
-    read -p "This installs OpenCV v3.2.0. Do you want to continue? " yn
+    read -p "This installs OpenCV and virtualenv. Do you want to continue? " yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
@@ -36,22 +36,22 @@ sudo apt-get install python3.4-dev
 pip3 install numpy
 
 # Install and build OpenCV
-wget -O ~/opencv-3.2.0.zip https://github.com/opencv/opencv/archive/3.2.0.zip
-unzip ~/opencv-3.2.0.zip
-wget -O ~/opencv_contrib-3.2.0.zip https://github.com/opencv/opencv_contrib/archive/3.2.0.zip
-unzip ~/opencv_contrib-3.2.0.zip
-cd ~/opencv-3.2.0
+OPENCV_VERSION=3.4.1
+wget -O ~/opencv-$OPENCV_VERSION.zip https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip
+unzip ~/opencv-$OPENCV_VERSION.zip
+wget -O ~/opencv_contrib-$OPENCV_VERSION.zip https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip
+unzip ~/opencv_contrib-$OPENCV_VERSION.zip
+cd ~/opencv-$OPENCV_VERSION
 mkdir build && cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D CMAKE_INSTALL_PREFIX=/usr/local \
 	-D INSTALL_C_EXAMPLES=OFF \
 	-D INSTALL_PYTHON_EXAMPLES=OFF \
 	-D BUILD_EXAMPLES=OFF \
-        -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.2.0/modules ..
+        -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-$OPENCV_VERSION/modules ..
 make -j4
 sudo make install
 sudo ldconfig
 
 # Add symlinks
-cd ~/.virtualenvs/cv/lib/python3.4/site-packages/
-ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so cv2.so
+ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so ~/.virtualenvs/cv/lib/python3.4/site-packages/cv2.so
