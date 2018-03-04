@@ -55,3 +55,5 @@ sudo ldconfig
 
 # Add symlinks
 ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so ~/.virtualenvs/cv/lib/python3.4/site-packages/cv2.so
+
+rm ~/opencv-$OPENCV_VERSION.zip ~/opencv_contrib-$OPENCV_VERSION.zip
