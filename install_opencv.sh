@@ -15,13 +15,23 @@ sudo apt-get upgrade
 sudo apt-get install build-essential \
                      cmake \
                      pkg-config \
-                     libgtk2.0-dev \
+                     libgtk3-dev \
                      libavcodec-dev \
                      libavformat-dev \
-                     libswscale-dev
+                     libswscale-dev \
+                     libjpeg8-dev \
+                     libtiff5-dev \
+                     libjasper-dev \
+                     libpng12-dev \
+                     libv4l-dev \
+                     libxvidcore-dev \
+                     libx264-dev \
+                     libatlas-base-dev \
+                     gfortran \
+                     python-dev
 
 # Install virtual environment
-sudo pip3 install virtualenv virtualenvwrapper
+sudo pip3 install virtualenv virtualenvwrapper numpy
 echo "# virtualenv and virtualenvwrapper" >> ~/.bashrc
 echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
 echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
@@ -44,11 +54,11 @@ unzip ~/opencv_contrib-$OPENCV_VERSION.zip
 cd ~/opencv-$OPENCV_VERSION
 mkdir build && cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-	-D CMAKE_INSTALL_PREFIX=/usr/local \
-	-D INSTALL_C_EXAMPLES=OFF \
-	-D INSTALL_PYTHON_EXAMPLES=OFF \
-	-D BUILD_EXAMPLES=OFF \
-        -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-$OPENCV_VERSION/modules ..
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=OFF \
+      -D INSTALL_PYTHON_EXAMPLES=OFF \
+      -D BUILD_EXAMPLES=OFF \
+      -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-$OPENCV_VERSION/modules ..
 make -j4
 sudo make install
 sudo ldconfig
