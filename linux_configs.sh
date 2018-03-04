@@ -38,6 +38,7 @@ sudo sed -i.bak 's/gedit.desktop/sublime-text.desktop/g' /etc/gnome/defaults.lis
 # Install pip
 wget -O ~/get-pip.py https://bootstrap.pypa.io/get-pip.py
 sudo python3 ~/get-pip.py
+rm ~/get-pip.py
 
 # Add user to dialout
 sudo adduser $USER dialout
