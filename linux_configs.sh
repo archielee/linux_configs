@@ -10,36 +10,25 @@ gsettings set com.canonical.Unity.Lenses disabled-scopes \
       'more_suggestions-skimlinks.scope']"
 echo "All done. Enjoy your privacy."
 
-# Chrome
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-wget -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# VSCode
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-# Sublime
-sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+echo "[Removing useless packages]"
+sudo apt -y purge thunderbird* pidgin* gwibber* rhythmbox* ubuntuone* empathy* totem*
 
 echo "[Updating the packages]"
-sudo apt-get update
+sudo apt update
 
 echo "[Installing the packages]"
-sudo apt-get install -y vim arduino terminator openssh-server git vlc \
-	indicator-multiload indicator-cpufreq screen sublime-text-installer google-chrome-stable
+sudo apt install -y vim terminator openssh-server git vlc python3-pip \
+	indicator-multiload indicator-cpufreq screen apt-transport-https code
 
-sudo apt-get -y purge thunderbird* pidgin* gwibber* rhythmbox* ubuntuone* empathy* totem*
-
-sudo apt-get -y dist-upgrade
+sudo apt -y dist-upgrade
 
 git config --global user.email "archie_lee7@hotmail.com"
 git config --global user.name "Archie Lee"
 
-# Make Sublime default
-sudo sed -i.bak 's/gedit.desktop/sublime-text.desktop/g' /usr/share/applications/defaults.list
-sudo sed -i.bak 's/gedit.desktop/sublime-text.desktop/g' /etc/gnome/defaults.list
-
-# Install pip
-wget -O ~/get-pip.py https://bootstrap.pypa.io/get-pip.py
-sudo python3 ~/get-pip.py
-rm ~/get-pip.py
-
-# Add user to dialout
-sudo adduser $USER dialout
-echo "Added yourself to dialout, make sure to logout to take effect."
+# Make VSCode default
+sudo update-alternatives --set editor /usr/bin/code
