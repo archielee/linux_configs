@@ -11,9 +11,10 @@ gsettings set com.canonical.Unity.Lenses disabled-scopes \
 echo "All done. Enjoy your privacy."
 
 # VSCode
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > ~/packages.microsoft.gpg
+sudo install -o root -g root -m 644 ~/packages.microsoft.gpg /usr/share/keyrings/
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+rm ~/packages.microsoft.gpg
 
 echo "[Removing useless packages]"
 sudo apt -y purge thunderbird* pidgin* gwibber* rhythmbox* ubuntuone* empathy* totem*
