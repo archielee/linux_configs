@@ -10,13 +10,6 @@ gsettings set com.canonical.Unity.Lenses disabled-scopes \
       'more_suggestions-skimlinks.scope']"
 echo "All done. Enjoy your privacy."
 
-# VSCode
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > ~/packages.microsoft.gpg
-sudo install -o root -g root -m 644 ~/packages.microsoft.gpg /usr/share/keyrings/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF
-rm ~/packages.microsoft.gpg
-
 echo "[Removing useless packages]"
 sudo apt -y purge thunderbird* pidgin* gwibber* rhythmbox* ubuntuone* empathy* totem*
 
@@ -25,7 +18,7 @@ sudo apt update
 
 echo "[Installing the packages]"
 sudo apt install -y vim terminator openssh-server git vlc python3-pip \
-	indicator-multiload indicator-cpufreq screen apt-transport-https code
+	indicator-multiload indicator-cpufreq screen
 
 sudo apt -y dist-upgrade
 
@@ -33,4 +26,4 @@ git config --global user.email "archie_lee7@hotmail.com"
 git config --global user.name "Archie Lee"
 
 # Make VSCode default
-sudo update-alternatives --set editor /usr/bin/code
+# sudo update-alternatives --set editor /usr/bin/code
