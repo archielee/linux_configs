@@ -8,7 +8,7 @@ wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 
 # Install ROS
 sudo apt update
-sudo apt install ros-kinetic-desktop-full
+sudo apt install -y ros-kinetic-desktop-full
 sudo rosdep init
 rosdep update
 
@@ -17,4 +17,4 @@ echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 # Install rosinstall
-sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential python-catkin-tools
+sudo apt install -y python-rosinstall python-rosinstall-generator python-wstool build-essential python-catkin-tools
